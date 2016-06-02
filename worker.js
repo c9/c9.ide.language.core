@@ -645,6 +645,8 @@ function endTime(t, message, indent) {
                             if (marker.skipMixed)
                                 return;
                             var pos = marker.pos;
+                            if (!pos)
+                                return console.error("Invalid marker, no position:", marker);
                             pos.sl = pos.el = pos.sl + region.sl;
                             if (pos.sl === region.sl) {
                                 pos.sc += region.sc;
