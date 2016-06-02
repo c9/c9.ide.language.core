@@ -19,7 +19,7 @@ var syntaxDetector = require("plugins/c9.ide.language.core/syntax_detector");
 var completeUtil = require("plugins/c9.ide.language/complete_util");
 var localCompleter = require("plugins/c9.ide.language.generic/local_completer");
 var openFilesCompleter = require("plugins/c9.ide.language.generic/open_files_local_completer");
-var base_handler = require("./base_handler");
+var base_handler = require("plugins/c9.ide.language/base_handler");
 var assert = require("c9/assert");
 
 require("plugins/c9.ide.browsersupport/browsersupport");

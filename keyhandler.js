@@ -16,7 +16,7 @@ define(function(require, exports, module) {
         var language = imports.language;
         var complete = imports["language.complete"];
         var tooltip = imports["language.tooltip"];
-        var complete_util = require("./complete_util");
+        var complete_util = require("plugins/c9.ide.language/complete_util");
         var DEFAULT_ID_REGEX = complete_util.DEFAULT_ID_REGEX;
         var ace;
         
