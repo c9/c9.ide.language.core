@@ -6,7 +6,7 @@
 define(function(require, exports, module) {
     main.consumes = [
         "Plugin", "ui", "tabManager", "ace", "language",
-        "menus", "commands", "c9", "tabManager", "browsersupport",
+        "menus", "commands", "c9", "tabManager",
         "language.tooltip", "settings"
     ];
     main.provides = ["language.complete"];

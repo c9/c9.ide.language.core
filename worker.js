@@ -22,8 +22,6 @@ var openFilesCompleter = require("plugins/c9.ide.language.generic/open_files_loc
 var base_handler = require("plugins/c9.ide.language/base_handler");
 var assert = require("c9/assert");
 
-require("plugins/c9.ide.browsersupport/browsersupport");
-
 var isInWebWorker = typeof window == "undefined" || !window.location || !window.document;
 
 var WARNING_LEVELS = {
