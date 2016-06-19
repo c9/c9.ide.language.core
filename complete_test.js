@@ -532,7 +532,7 @@ require(["plugins/c9.ide.language/test_base"], function(base) {
                 });
             });
             
-            it("completes php variables in short php escapes", function(done) {
+            it.skip("completes php variables in short php escapes", function(done) {
                 tabs.openFile("/test_broken.php", function(err, _tab) {
                     if (err) return done(err);
                     var tab = _tab;
@@ -553,7 +553,7 @@ require(["plugins/c9.ide.language/test_base"], function(base) {
                 });
             });
             
-            it("completes php variables in long files", function(done) {
+            it.skip("completes php variables in long files", function(done) {
                 tabs.openFile("/test_broken.php", function(err, _tab) {
                     if (err) return done(err);
                     var tab = _tab;
@@ -603,7 +603,7 @@ require(["plugins/c9.ide.language/test_base"], function(base) {
                 });
             });
             
-            it('just invokes completion once for "v1 + 1 == v2 + v"', function(done) {
+            it.skip('just invokes completion once for "v1 + 1 == v2 + v"', function(done) {
                 jsSession.setValue("var v1; ");
                 jsTab.editor.ace.selection.setSelectionRange({ start: { row: 1, column: 0 }, end: { row: 1, column: 0} });
                 jsTab.editor.ace.onTextInput("v");
@@ -634,7 +634,7 @@ require(["plugins/c9.ide.language/test_base"], function(base) {
                 });
             });
             
-            it('just invokes completion once for "x1 + 1 == x2 + x", with some timeouts', function(done) {
+            it.skip('just invokes completion once for "x1 + 1 == x2 + x", with some timeouts', function(done) {
                 jsSession.setValue("var x1; ");
                 jsTab.editor.ace.selection.setSelectionRange({ start: { row: 1, column: 0 }, end: { row: 1, column: 0} });
                 jsTab.editor.ace.onTextInput("x");
