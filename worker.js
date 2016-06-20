@@ -1308,6 +1308,7 @@ function endTime(t, message, indent) {
         this.$workspaceDir = workspaceDir === "" ? "/" : workspaceDir;
         this.$path = path;
         this.$language = language;
+        this.doc.$language = language;
         this.immediateWindow = immediateWindow;
         this.lastCurrentNode = null;
         this.lastCurrentPos = null;
