@@ -40,7 +40,7 @@ define(function(require, exports, module) {
             commands.addCommand({
                 name: "quickfix",
                 hint: "quickfix",
-                bindKey: {mac: "Command-F3", win: "Ctrl-F3"},
+                bindKey: { mac: "Command-F3", win: "Ctrl-F3" },
                 exec: function(editor) {
                     invoke();
                 }
@@ -89,7 +89,7 @@ define(function(require, exports, module) {
                 return;
             
             // HACK: don't show UI for now, assume there's only 1 result
-            if (results[0].deltas.length > 1 && results[0].delta.some(function(d) { return d.path }))
+            if (results[0].deltas.length > 1 && results[0].delta.some(function(d) { return d.path; }))
                 throw new Error("Multiple deltas with paths not allowed");
                 
             applyQuickfix(e.data.path, results[0]);

@@ -81,7 +81,7 @@ define(function(require, exports, module) {
             
             // Menus
             menus.addItemByPath("Goto/Goto Symbol...", 
-                new apf.item({ command : "outline" }), 110, plugin);
+                new apf.item({ command: "outline" }), 110, plugin);
             
             language.getWorker(function(err, worker) {
                 worker.on("outline", onOutlineData); 
@@ -142,7 +142,7 @@ define(function(require, exports, module) {
             
             // Extends navigate with outline support
             
-            var wasActive, onsel = function(){
+            var wasActive, onsel = function() {
                 if (!navigate.tree.isFocused()) return;
                 var node = navigate.tree.selection.getCursor();
                 if (node) onSelect(node);
@@ -247,7 +247,7 @@ define(function(require, exports, module) {
             }
         }
 
-        function createProvider(){
+        function createProvider() {
             // Import CSS
             ui.insertCss(require("text!./outline.css"), staticPrefix, plugin);
             
@@ -285,7 +285,7 @@ define(function(require, exports, module) {
             tree.setDataProvider(tdOutline);
 
             // @TODO this is probably not sufficient
-            layout.on("resize", function() { tree.resize() }, plugin);
+            layout.on("resize", function() { tree.resize(); }, plugin);
             
             tree.textInput = textbox.ace.textInput;
             
@@ -344,7 +344,7 @@ define(function(require, exports, module) {
                 }
                 
                 // TODO add better support for overlay panels
-                setTimeout(function() { plugin.hide() }, 10);
+                setTimeout(function() { plugin.hide(); }, 10);
             }
     
             apf.addEventListener("movefocus", onAllBlur);
@@ -537,7 +537,7 @@ define(function(require, exports, module) {
             if (textbox) {
                 textbox.setValue("");
                 if (type === "terminal")
-                    tdOutline.setRoot([{icon: "property", name: "Terminal" }]);
+                    tdOutline.setRoot([{ icon: "property", name: "Terminal" }]);
                 else
                     tdOutline.setRoot({});
             }
@@ -555,7 +555,7 @@ define(function(require, exports, module) {
             ace.scrollToLine(Math.round((line + lineEnd) / 2 - SAFETY), true);
         }
         
-        function addOutlinePlugin(path, contents, plugin){
+        function addOutlinePlugin(path, contents, plugin) {
             var template = require("text!./outline_template.js");
             
             template = template.replace("{{CONFIG}}", function() {
@@ -564,7 +564,7 @@ define(function(require, exports, module) {
             
             jsonalyzer.registerWorkerHandler(path, template);
             
-            plugin.addOther(function(){
+            plugin.addOther(function() {
                 if (jsonalyzer.unregisterWorkerHandler)
                     jsonalyzer.unregisterWorkerHandler(path);
             });

@@ -24,7 +24,7 @@ var HoverLink = function(editor) {
     this.active = true;
 };
 
-(function(){
+(function() {
     oop.implement(this, EventEmitter);
     
     this.attach = function () {
@@ -36,7 +36,7 @@ var HoverLink = function(editor) {
     };
     
     this.token = {};
-    this.range = new Range(-1,-1,-1,-1);
+    this.range = new Range(-1, -1, -1, -1);
 
     this.update = function() {
         this.$timer = null;
@@ -49,7 +49,7 @@ var HoverLink = function(editor) {
         var row = Math.floor((this.y + renderer.scrollTop - canvasPos.top) / renderer.lineHeight);
         var col = Math.round(offset);
 
-        var screenPos = {row: row, column: col, side: offset - col > 0 ? 1 : -1};
+        var screenPos = { row: row, column: col, side: offset - col > 0 ? 1 : -1 };
         var session = editor.session;
         var docPos = session.screenToDocumentPosition(screenPos.row, screenPos.column);
         
@@ -85,7 +85,7 @@ var HoverLink = function(editor) {
         session.removeMarker(this.marker);
         
         this.range = this.getRange(token);
-        this._signal("addMarker", {range: this.range});
+        this._signal("addMarker", { range: this.range });
         this.addMarker();
     };
     
@@ -109,7 +109,7 @@ var HoverLink = function(editor) {
         var match;
         regExp.lastIndex = 0;
         string.replace(regExp, function(str) {
-            var offset = arguments[arguments.length-2];
+            var offset = arguments[arguments.length - 2];
             var length = str.length;
             if (offset <= col && offset + length >= col)
                 match = {

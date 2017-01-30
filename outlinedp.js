@@ -27,7 +27,7 @@ define(function(require, exports, module) {
         
         this.setRoot = function(root) {
             if (Array.isArray(root))
-                root = {items: root};
+                root = { items: root };
             this.root = root || {};
             this.$selectedNode = this.root;
             this.visibleItems = [];
@@ -38,7 +38,7 @@ define(function(require, exports, module) {
         };
         
         this.select = function(index) {
-            this.selectNode(index === 0 ? this.root : {index: index});
+            this.selectNode(index === 0 ? this.root : { index: index });
         };
         
         this.getIconHTML = function(node) {
@@ -57,7 +57,7 @@ define(function(require, exports, module) {
             }
             
             return value + 
-                (!!node.meta 
+                (node.meta 
                     ? "<code style='color:gray;'>" + node.meta + "</code>" 
                     : "");
         };

@@ -46,7 +46,7 @@ define(function(require, exports, module) {
         
         var html = "<span class='completer-img " + (match.icon 
             ? iconClass[match.icon] || this.$defineIcon(match.icon)
-            : "" ) + "'></span>";
+            : "") + "'></span>";
         
         if (match.type) {
             var shortType = guidToShortString(match.type);

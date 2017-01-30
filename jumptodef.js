@@ -50,7 +50,7 @@ define(function(require, exports, module) {
         
                 commands.addCommand({
                     name: "jumptodef",
-                    bindKey: {mac: "F3", win: "F3"},
+                    bindKey: { mac: "F3", win: "F3" },
                     hint: "jump to the definition of the variable or function that is under the cursor",
                     exec: function() {
                         jumptodef();
@@ -134,9 +134,9 @@ define(function(require, exports, module) {
                 updateSettings();
             });
             prefs.add({
-                "Language" : {
-                    "Input" : {
-                        "Use Cmd-Click for Jump to Definition" : {
+                "Language": {
+                    "Input": {
+                        "Use Cmd-Click for Jump to Definition": {
                             type: "checkbox",
                             path: "user/language/@overrideMultiselectShortcuts",
                             position: 6000
@@ -236,7 +236,7 @@ define(function(require, exports, module) {
     
             // We have no UI for multi jumptodef; we just take the last for now
             var lastResult;
-            for (var i = results.length - 1; i >=0; i--) {
+            for (var i = results.length - 1; i >= 0; i--) {
                 lastResult = results[i];
                 if (!lastResult.isGeneric)
                     break;
@@ -257,7 +257,7 @@ define(function(require, exports, module) {
                     path = "~" + path.substr(c9.homeDir.length + 1);
                 else
                     // HACK: read file outside of vfs roots
-                    return proc.execFile("cat", { args: [path.substr(1)] }, function(err, result) {
+                    return proc.execFile("cat", { args: [path.substr(1)]}, function(err, result) {
                         if (err) return showError("Could not open refrenced file: " + path);
                         
                         openTab(result);

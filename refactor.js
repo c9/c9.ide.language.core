@@ -5,7 +5,7 @@
  */
 define(function(require, exports, module) {
     main.consumes = [
-        "Plugin", "tabManager", "language", "ui" , "menus", "dialog.question",
+        "Plugin", "tabManager", "language", "ui", "menus", "dialog.question",
         "ace", "language.marker", "language", "commands",
         "language.complete"
     ];
@@ -58,7 +58,7 @@ define(function(require, exports, module) {
                         return;
                     isGenericRefactor = event.data.isGeneric;
                     initRenameUI(event.data, lastAce);
-                    worker.emit("onRenameBegin", {data: {}});
+                    worker.emit("onRenameBegin", { data: {}});
                 });
         
                 worker.on("commitRenameResult", function(event) {
@@ -88,7 +88,7 @@ define(function(require, exports, module) {
             commands.addCommand({
                 name: "renameVar",
                 hint: "Rename refactor",
-                bindKey: {mac: "Option-Command-R", win: "Ctrl-Alt-R"},
+                bindKey: { mac: "Option-Command-R", win: "Ctrl-Alt-R" },
                 exec: function(editor) {
                     selectVar = false;
                     beginRename(editor);
@@ -160,7 +160,7 @@ define(function(require, exports, module) {
             var doc = ace.getSession().getDocument();
             var line = doc.getLine(curPos.row);
             oldIdentifier = getFullIdentifier(line, curPos, ace);
-            worker.emit("renamePositions", {data: curPos});
+            worker.emit("renamePositions", { data: curPos });
         }
         
         function initRenameUI(data, ace) {
@@ -214,13 +214,13 @@ define(function(require, exports, module) {
             var oPos = placeHolder.pos;
             var line = doc.getLine(oPos.row);
             var newIdentifier = getFullIdentifier(line, oPos, lastAce);
-            worker.emit("commitRename", {data: { oldId: oldIdentifier, newName: newIdentifier.value, isGeneric: isGenericRefactor } });
+            worker.emit("commitRename", { data: { oldId: oldIdentifier, newName: newIdentifier.value, isGeneric: isGenericRefactor }});
         }
     
         function cancelRename() {
             if (placeHolder)
                 placeHolder.cancel();
-            worker.emit("onRenameCancel", {data: {}});
+            worker.emit("onRenameCancel", { data: {}});
             // todo: currently onRenameCancel in the worker doesn't do anything
             // so we need to call cleanup here
             cleanup();

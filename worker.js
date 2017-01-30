@@ -111,7 +111,7 @@ exports.createUIWorkerClient = function() {
         emitter._dispatchEvent.call(result, event, { data: data });
     };
     result.changeListener = function(e) {
-        this.emit("change", {data: [e.data]});
+        this.emit("change", { data: [e.data]});
     }; 
     return result;
 };
@@ -201,7 +201,7 @@ function applyEventOnce(eventHandler, waitForMirror) {
             clearTimeout(timer);
         timer = setTimeout(function() {
             if (waitForMirror && mirror.isPending())
-                return setTimeout(function() { applyEventOnce(eventHandler, true) }, 0);
+                return setTimeout(function() { applyEventOnce(eventHandler, true); }, 0);
             eventHandler.apply(eventHandler, _arguments);
         }, 0);
     };
@@ -413,7 +413,7 @@ function endTime(t, message, indent) {
             return;
         var docLength = ignoreSize ? null : part
             ? part.getValue().length
-            : this.doc.$lines.reduce(function(t,l) { return t + l.length; }, 0);
+            : this.doc.$lines.reduce(function(t, l) { return t + l.length; }, 0);
         return ignoreSize || docLength < handler.getMaxFileSizeSupported();
     };
 
@@ -616,7 +616,7 @@ function endTime(t, message, indent) {
             _self.part = part;
             _self.$lastAnalyzer = "parse()";
             _self.parse(part, function analyzeParsed(ast) {
-                cachedAsts[part.index] = {part: part, ast: ast};
+                cachedAsts[part.index] = { part: part, ast: ast };
 
                 _self.asyncForEachHandler(
                     { part: part, method: "analyze" },
@@ -737,7 +737,7 @@ function endTime(t, message, indent) {
                             
                             // if we have real pos, just get the value from document
                             var pos = lastResult.pos;
-                            var text = _self.doc.getTextRange({start: {column: pos.sc, row: pos.sl}, end: {column: pos.ec, row: pos.el}});
+                            var text = _self.doc.getTextRange({ start: { column: pos.sc, row: pos.sl }, end: { column: pos.ec, row: pos.el }});
                             if (text != lastResult.value) {
                                 console.warn("inspect expected ", text, " got ", lastResult.value);
                                 lastResult.value = text;
@@ -955,8 +955,8 @@ function endTime(t, message, indent) {
             if (result.markers.isGeneric)
                 result.markers = [];
             result.markers = result.markers.concat(response.markers.map(function (m) {
-                var start = syntaxDetector.posFromRegion(part.region, {row: m.pos.sl, column: m.pos.sc});
-                var end = syntaxDetector.posFromRegion(part.region, {row: m.pos.el, column: m.pos.ec});
+                var start = syntaxDetector.posFromRegion(part.region, { row: m.pos.sl, column: m.pos.sc });
+                var end = syntaxDetector.posFromRegion(part.region, { row: m.pos.el, column: m.pos.ec });
                 m.pos = {
                     sl: start.row,
                     sc: start.column,
@@ -1427,21 +1427,21 @@ function endTime(t, message, indent) {
             if (a.name === b.name || (a.id || a.name) === (b.id || b.name)) {
                 // Duplicate!
                 if (a.isContextual && !b.isContextual)
-                    matches.splice(i+1, 1);
+                    matches.splice(i + 1, 1);
                 else if (!a.isContextual && b.isContextual)
                     matches.splice(i, 1);
                 else if (a.isGeneric && !b.isGeneric)
                     matches.splice(i, 1);
                 else if (!a.isGeneric && b.isGeneric)
-                    matches.splice(i+1, 1);
+                    matches.splice(i + 1, 1);
                 else if (a.priority < b.priority)
                     matches.splice(i, 1);
                 else if (a.priority > b.priority)
-                    matches.splice(i+1, 1);
+                    matches.splice(i + 1, 1);
                 else if (a.score < b.score)
                     matches.splice(i, 1);
                 else if (a.score > b.score)
-                    matches.splice(i+1, 1);
+                    matches.splice(i + 1, 1);
                 else
                     matches.splice(i, 1);
                 i--;
@@ -1875,11 +1875,11 @@ function endTime(t, message, indent) {
         if (!isInWebWorker) { // Avoid making the stack too deep in ?noworker=1 mode
             var _self = this;
             setTimeout(function onCompleteUpdate() {
-                _self.complete({data: {pos: pos, line: line, isUpdate: true}});
+                _self.complete({ data: { pos: pos, line: line, isUpdate: true }});
             }, 0);
         }
         else {
-            this.complete({data: {pos: pos, line: line, isUpdate: true, forceBox: true}});
+            this.complete({ data: { pos: pos, line: line, isUpdate: true, forceBox: true }});
         }
     };
     

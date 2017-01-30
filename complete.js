@@ -242,8 +242,8 @@ define(function(require, exports, module) {
                     drawDocInvoke.schedule(SHOW_DOC_DELAY_MOUSE_OVER);
             }, false);
             
-            popup.on("select", function() { updateDoc(true) });
-            popup.on("changeHoverMarker", function() { updateDoc(true) });
+            popup.on("select", function() { updateDoc(true); });
+            popup.on("changeHoverMarker", function() { updateDoc(true); });
             
             popup.on("click", function(e) {
                 onKeyPress(e, 0, 13);
@@ -288,7 +288,7 @@ define(function(require, exports, module) {
             if (!ace.inVirtualSelectionMode && ace.inMultiSelectMode) {
                 ace.forEachSelection(function() {
                     replaceText(ace, match, deleteSuffix);
-                }, null, {keepOrder: true});
+                }, null, { keepOrder: true });
                 if (ace.tabstopManager)
                     ace.tabstopManager.tabNext();
                 return;
@@ -330,7 +330,7 @@ define(function(require, exports, module) {
                     
                 // Remove HTML duplicate '<' completions
                 var preId = completeUtil.retrievePrecedingIdentifier(line, pos.column, idRegex);
-                if (isHtml(ace) && line[pos.column-preId.length-1] === '<' && newText[0] === '<')
+                if (isHtml(ace) && line[pos.column - preId.length - 1] === '<' && newText[0] === '<')
                     newText = newText.substring(1);
                 
                 snippet = newText.replace(/[$]/g, "\\$").replace(/\^\^(.*)\^\^|\^\^/g, "${0:$1}");
@@ -402,7 +402,7 @@ define(function(require, exports, module) {
             updateDoc(true);
             
             ignoreMouseOnce = !isPopupVisible();
-            emit("showPopup", {popup: popup});
+            emit("showPopup", { popup: popup });
         }
         
         function adjustToToolTipHeight(height) {
@@ -682,7 +682,7 @@ define(function(require, exports, module) {
             
             var keyBinding = lastAce.keyBinding;
     
-            switch(keyCode) {
+            switch (keyCode) {
                 case 0: break;
                 case 32: // Space
                 case 35: // End
@@ -875,7 +875,7 @@ define(function(require, exports, module) {
             matches = filterMatches(eventMatches, line, pos);
             matches = cleanupMatches(matches, ace, pos, line);
             if (matches.length) {
-                showCompletionBox({ace: ace}, matches, prefix, line);
+                showCompletionBox({ ace: ace }, matches, prefix, line);
             } else {
                 closeCompletionBox();
                 $closeTrigger = ace.prevOp;
@@ -914,7 +914,7 @@ define(function(require, exports, module) {
                 return;
             ace = ace || lastAce;
             now = now || !isPopupVisible();
-            var delay = now  ? 0 : AUTO_UPDATE_DELAY;
+            var delay = now ? 0 : AUTO_UPDATE_DELAY;
             if (!now) {
                 // Fire incremental update after document changes are known
                 setTimeout(onCompleteUpdate.bind(this), 0);
@@ -955,7 +955,7 @@ define(function(require, exports, module) {
                 data = { text: data };
                 var text = data.text;
                 var firstLine = text.split("\n", 1)[0].replace(/\#/g, "").trim();
-                firstLine.split(";").forEach(function(n){
+                firstLine.split(";").forEach(function(n) {
                     if (!n) return;
                     var info = n.split(":");
                     if (info.length != 2) return;
@@ -963,7 +963,7 @@ define(function(require, exports, module) {
                 });
             }
             if (data.include)
-                data.include = data.include.split(",").map(function(n){
+                data.include = data.include.split(",").map(function(n) {
                     return n.trim();
                 });
             if (!data.scope) throw new Error("Missing Snippet Scope");
@@ -972,7 +972,7 @@ define(function(require, exports, module) {
             if (!data.snippets && data.text)
                 data.snippets = snippetManager.parseSnippetFile(data.text);
             
-            data.scope.forEach(function(scope){
+            data.scope.forEach(function(scope) {
                 snippetManager.register(data.snippets, scope);
             });
             
@@ -984,7 +984,7 @@ define(function(require, exports, module) {
             //     });
             // }
             
-            plugin.addOther(function(){
+            plugin.addOther(function() {
                 snippetManager.unregister(data.snippets);
             });
         }
@@ -1009,7 +1009,7 @@ define(function(require, exports, module) {
             txtCompleterDoc = null;
             docElement = null;
             lastAce = null;
-            worker  = null;
+            worker = null;
             matches = null;
             eventMatches = null;
             popup = null;

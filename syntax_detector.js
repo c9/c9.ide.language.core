@@ -43,8 +43,8 @@ function getSyntaxRegions(doc, originalSyntax) {
             syntax: originalSyntax,
             sl: 0,
             sc: 0,
-            el: doc.getLength()-1,
-            ec: doc.getLine(doc.getLength()-1).length
+            el: doc.getLength() - 1,
+            ec: doc.getLine(doc.getLength() - 1).length
         }];
 
     var lines = doc.getAllLines();
@@ -54,7 +54,7 @@ function getSyntaxRegions(doc, originalSyntax) {
         return m.indexOf("-start") === m.length - 6;
     });
     var syntax = defaultSyntax;
-    var regions = [{syntax: syntax, sl: 0, sc: 0}];
+    var regions = [{ syntax: syntax, sl: 0, sc: 0 }];
     var starter, endLang;
     var tempS, tempM;
     var i, m, cut, inLine = 0;
@@ -67,8 +67,8 @@ function getSyntaxRegions(doc, originalSyntax) {
             if (m) {
                 endLang = null;
                 syntax = defaultSyntax;
-                regions[regions.length-1].el = row;
-                regions[regions.length-1].ec = m.index + inLine;
+                regions[regions.length - 1].el = row;
+                regions[regions.length - 1].ec = m.index + inLine;
                 regions.push({
                     syntax: syntax,
                     sl: row,
@@ -96,9 +96,9 @@ function getSyntaxRegions(doc, originalSyntax) {
                 syntax = starter.replace("-start", "");
                 if (scriptTypeTests[syntax] && !scriptTypeTests[syntax](m[0]))
                     syntax = defaultSyntax;
-                endLang = type[syntax+"-end"];
-                regions[regions.length-1].el = row;
-                regions[regions.length-1].ec = inLine + m.index + m[0].length;
+                endLang = type[syntax + "-end"];
+                regions[regions.length - 1].el = row;
+                regions[regions.length - 1].ec = inLine + m.index + m[0].length;
                 regions.push({
                     syntax: syntax,
                     sl: row,
@@ -114,8 +114,8 @@ function getSyntaxRegions(doc, originalSyntax) {
             }
         }
     }
-    regions[regions.length-1].el = lines.length;
-    regions[regions.length-1].ec = lines[lines.length-1].length;
+    regions[regions.length - 1].el = lines.length;
+    regions[regions.length - 1].ec = lines[lines.length - 1].length;
     return regions;
 }
 
@@ -187,14 +187,14 @@ function regionToCodePart(doc, region, index) {
             if (l === 0)
                 return lines[0].substring(region.sc);
             if (l === lines.length - 1)
-                return lines[lines.length-1].substring(0, region.ec);
+                return lines[lines.length - 1].substring(0, region.ec);
             return lines[l];
         },
         getAllLines: function() {
             if (!allLines)
                 allLines = region.sl === region.el
                     ? [lines[0].substring(region.sc, region.ec)]
-                    : [lines[0].substring(region.sc)].concat(lines.slice(1, lines.length-1)).concat([lines[lines.length-1].substring(0, region.ec)]);
+                    : [lines[0].substring(region.sc)].concat(lines.slice(1, lines.length - 1)).concat([lines[lines.length - 1].substring(0, region.ec)]);
             return allLines;
         },
         getValue: function() {
@@ -203,7 +203,7 @@ function regionToCodePart(doc, region, index) {
             return value;
         },
         getLength: function() {
-            return  region.el - region.sl + 1;
+            return region.el - region.sl + 1;
         }
     };
     // TODO: remove this; not exposed as public API
